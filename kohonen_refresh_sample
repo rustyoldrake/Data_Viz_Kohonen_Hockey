@@ -1,0 +1,29 @@
+
+# decision_analysis_sample
+
+# https://cran.r-project.org/web/packages/kohonen/index.html
+
+library("kohonen")
+
+# Get sample data
+setwd("/Users/ryananderson/Documents/")
+getwd()
+
+
+# test import and basic viz
+data <- read.csv("decision_analysis_sample.csv")
+head(data)
+
+# drop  the date format columns
+data$original_implement_date <- NULL
+data$last_update <- NULL
+head(data)
+
+# first test
+data.sc <- scale(data)
+set.seed(7)
+data.som <- som(data.sc, grid = somgrid(10, 6, "hexagonal"))
+plot(data.som, main = "Decision Analysis Sample")
+
+plot(data.som, type="count", main="Node Counts")
+
